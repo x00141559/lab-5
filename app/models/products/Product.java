@@ -87,7 +87,7 @@ public class Product extends Model {
             return description; 
         } 
         public void increaseStock(int qty) {
-            this.stock += qty;
+            this.stock ++;
         }
 
         public void setDescription(String description) { 
