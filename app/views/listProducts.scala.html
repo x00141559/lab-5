@@ -5,6 +5,11 @@
 
 
 @main("Products",user) {
+  @if(flash.containsKey("error")) {
+    <p class="alert alert-warning">
+        @flash.get("error")
+    </p>
+}
 
 <p class="lead">Product Catalogue</p>
 <br>

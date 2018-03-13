@@ -69,11 +69,20 @@ public class ShoppingCtrl extends Controller {
             customer.update();
         }
         // Add product to the basket and save
-        customer.getBasket().addProduct(p);
+        if(p.getStock() == 0){
+            flash("error", "out of stock!");
+            return redirect(routes.ProductCtrl.listProducts(0,""));
+        }
+        else {
+
+            customer.getBasket().addProduct(p);
         customer.update();
-        
+        p.decreaseStock();
+        p.update();
         // Show the basket contents     
         return ok(basket.render(customer));
+        }
+        
     }
     
     // Add an item to the basket
